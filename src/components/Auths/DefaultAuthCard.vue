@@ -14,14 +14,6 @@ const props = defineProps(['subtitle', 'title', 'customClasses'])
             <img class="hidden dark:block" src="@/assets/images/logo/logo-icon.svg" alt="Logo" />
             <img class="dark:hidden" src="@/assets/images/logo/logo-dark.svg" alt="Logo" />
           </router-link>
-
-          <p class="font-medium 2xl:px-20">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit suspendisse.
-          </p>
-
-          <span class="mt-15 inline-block">
-            <img src="@/assets/images/illustration/illustration-03.svg" alt="illustration" />
-          </span>
         </div>
       </div>
       <div class="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">

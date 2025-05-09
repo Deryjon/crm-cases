@@ -19,7 +19,8 @@ const routes = [
     name: 'eCommerce',
     component: ECommerceView,
     meta: {
-      title: 'Дашборд'
+      title: 'Дашборд',
+      requiresAuth: true
     }
   },
   {
@@ -27,7 +28,8 @@ const routes = [
     name: 'catalog',
     component: CatalogView,
     meta: {
-      title: 'Каталог товаров'
+      title: 'Каталог товаров',
+      requiresAuth: true
     }
   },
   {
@@ -35,7 +37,8 @@ const routes = [
     name: 'profile',
     component: ProfileView,
     meta: {
-      title: 'Профиль'
+      title: 'Профиль',
+      requiresAuth: true
     }
   },
   {
@@ -43,7 +46,8 @@ const routes = [
     name: 'formElements',
     component: FormElementsView,
     meta: {
-      title: 'Form Elements'
+      title: 'Form Elements',
+      requiresAuth: true
     }
   },
   {
@@ -51,7 +55,8 @@ const routes = [
     name: 'formLayout',
     component: FormLayoutView,
     meta: {
-      title: 'Form Layout'
+      title: 'Form Layout',
+      requiresAuth: true
     }
   },
   {
@@ -59,7 +64,8 @@ const routes = [
     name: 'tables',
     component: TablesView,
     meta: {
-      title: 'Таблицы'
+      title: 'Таблицы',
+      requiresAuth: true
     }
   },
   {
@@ -67,7 +73,8 @@ const routes = [
     name: 'settings',
     component: SettingsView,
     meta: {
-      title: 'Настройки'
+      title: 'Настройки',
+      requiresAuth: true
     }
   },
   {
@@ -75,7 +82,8 @@ const routes = [
     name: 'basicChart',
     component: BasicChartView,
     meta: {
-      title: 'Статистика'
+      title: 'Статистика',
+      requiresAuth: true
     }
   },
   {
@@ -83,7 +91,8 @@ const routes = [
     name: 'alerts',
     component: AlertsView,
     meta: {
-      title: 'Уведомление'
+      title: 'Уведомление',
+      requiresAuth: true
     }
   },
   {
@@ -91,7 +100,8 @@ const routes = [
     name: 'buttons',
     component: ButtonsView,
     meta: {
-      title: 'Кнопки'
+      title: 'Кнопки',
+      requiresAuth: true
     }
   },
   {
@@ -122,6 +132,13 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = ` ${to.meta.title} | CRM Konkurent.cases`
+
+  const token = localStorage.getItem('token')
+
+  if (to.meta.requiresAuth && !token) {
+    return next('/auth/signin')
+  }
+
   next()
 })
 

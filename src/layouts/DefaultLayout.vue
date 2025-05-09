@@ -1,19 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import HeaderArea from '@/components/Header/HeaderArea.vue'
 import SidebarArea from '@/components/Sidebar/SidebarArea.vue'
+
+// Проверка наличия токена
+const isAuthenticated = ref(!!localStorage.getItem('token'))
 </script>
 
 <template>
-  <!-- ===== Page Wrapper Start ===== -->
   <div class="flex h-screen overflow-hidden">
     <!-- ===== Sidebar Start ===== -->
-    <SidebarArea />
+    <SidebarArea v-if="isAuthenticated" />
     <!-- ===== Sidebar End ===== -->
 
     <!-- ===== Content Area Start ===== -->
     <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
       <!-- ===== Header Start ===== -->
-      <HeaderArea />
+      <HeaderArea v-if="isAuthenticated" />
       <!-- ===== Header End ===== -->
 
       <!-- ===== Main Content Start ===== -->
@@ -25,5 +28,4 @@ import SidebarArea from '@/components/Sidebar/SidebarArea.vue'
       <!-- ===== Main Content End ===== -->
     </div>
   </div>
-  <!-- ===== Page Wrapper End ===== -->
 </template>
